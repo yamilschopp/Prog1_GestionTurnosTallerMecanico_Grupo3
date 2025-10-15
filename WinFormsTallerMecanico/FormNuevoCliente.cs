@@ -59,6 +59,15 @@ namespace WinFormsTallerMecanico
                 return;
             }
 
+            // Validación de CUIL/CUIT: solo números, sin espacios ni guiones, y exactamente 11 dígitos
+            string cuilCuitLimpio = System.Text.RegularExpressions.Regex.Replace(textBoxCuilCuit.Text, "[^0-9]", "");
+            if (cuilCuitLimpio.Length != 11)
+            {
+                MessageBox.Show("El CUIL/CUIT debe tener exactamente 11 dígitos numéricos (sin letras, espacios ni guiones).", "Error de Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var nuevoCliente = new Cliente
             {
                 Nombre = textBoxNombre.Text.Trim(),
@@ -67,8 +76,7 @@ namespace WinFormsTallerMecanico
                 Correo = textBoxCorreo.Text.Trim(),
                 IdLocalidad = (int)comboBoxLocalidad.SelectedValue,
                 Activo = checkBoxActivo.Checked,
-
-                CuilCuit = textBoxCuilCuit.Text.Trim(),
+                CuilCuit = cuilCuitLimpio,
                 CondFiscal = textBoxCondFiscal.Text.Trim()
             };
 
