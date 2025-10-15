@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClasesTallerMecanico.Models
 {
@@ -28,9 +23,14 @@ namespace ClasesTallerMecanico.Models
 
         public string DomicilioTrabajo { get; set; }
 
-        [Required]
-        public string Estado { get; set; } // Not Null
+        public int IdLocalidad { get; set; } // FK - Not Null
+        [ForeignKey("IdLocalidad")]
+
+        public Localidad Localidad { get; set; }
 
         public string Descripcion { get; set; }
+
+        [Required]
+        public bool Activo { get; set; } // Not Null
     }
 }

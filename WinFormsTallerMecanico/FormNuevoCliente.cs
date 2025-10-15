@@ -1,26 +1,18 @@
 ﻿using ClasesTallerMecanico.Data;
 using ClasesTallerMecanico.Models;
 using ClasesTallerMecanico.Repository;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace WinFormsTallerMecanico
 {
-    public partial class FormCliente : Form
+    public partial class FormNuevoCliente : Form
     {
         private ApplicationDbContext _context;
         private ClienteRepository _clienteRepository;
         private LocalidadRepository _localidadRepository;
-        public FormCliente()
+        public FormNuevoCliente()
         {
             InitializeComponent();
+            checkBoxActivo.Checked = true;
             _context = new ApplicationDbContext();
             _clienteRepository = new ClienteRepository(_context);
             _localidadRepository = new LocalidadRepository(_context);
@@ -35,10 +27,9 @@ namespace WinFormsTallerMecanico
                 var localidades = _localidadRepository.ObtenerTodas();
 
                 comboBoxLocalidad.DataSource = localidades;
-                comboBoxLocalidad.DisplayMember = "Nombre"; // Muestra el Nombre al usuario
-                comboBoxLocalidad.ValueMember = "Id";      // El valor interno es el Id
+                comboBoxLocalidad.DisplayMember = "Nombre";
+                comboBoxLocalidad.ValueMember = "Id";
 
-                // Selecciona el primer ítem por defecto si existe
                 if (localidades.Any())
                 {
                     comboBoxLocalidad.SelectedIndex = 0;
@@ -75,7 +66,7 @@ namespace WinFormsTallerMecanico
                 Telefono = textBoxTelefono.Text.Trim(),
                 Correo = textBoxCorreo.Text.Trim(),
                 IdLocalidad = (int)comboBoxLocalidad.SelectedValue,
-                Activo = true,
+                Activo = checkBoxActivo.Checked,
 
                 CuilCuit = textBoxCuilCuit.Text.Trim(),
                 CondFiscal = textBoxCondFiscal.Text.Trim()
@@ -106,12 +97,15 @@ namespace WinFormsTallerMecanico
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
+            //FormListaClientes formListaClientes = new FormListaClientes();
+            //formListaClientes.ShowDialog();
+
             this.Close();
         }
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
-           
+
             if (string.IsNullOrWhiteSpace(textBoxCuilCuit.Text))
             {
                 MessageBox.Show("Debe ingresar el CUIL/CUIT del cliente a eliminar.", "Error de Validación",
@@ -129,7 +123,7 @@ namespace WinFormsTallerMecanico
 
             if (confirmacion == DialogResult.No)
             {
-                return; 
+                return;
             }
 
             try

@@ -1,6 +1,6 @@
 ﻿namespace WinFormsTallerMecanico
 {
-    partial class FormCliente
+    partial class FormNuevoCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -44,7 +44,8 @@
             label7 = new Label();
             btnGuardar = new Button();
             BtnCancelar = new Button();
-            btnEliminarCliente = new Button();
+            checkBoxActivo = new CheckBox();
+            label8 = new Label();
             SuspendLayout();
             // 
             // textBoxNombre
@@ -173,7 +174,7 @@
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(553, 142);
+            BtnCancelar.Location = new Point(553, 134);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.Size = new Size(94, 29);
             BtnCancelar.TabIndex = 15;
@@ -181,22 +182,31 @@
             BtnCancelar.UseVisualStyleBackColor = true;
             BtnCancelar.Click += BtnCancelar_Click;
             // 
-            // btnEliminarCliente
+            // checkBoxActivo
             // 
-            btnEliminarCliente.Location = new Point(553, 228);
-            btnEliminarCliente.Name = "btnEliminarCliente";
-            btnEliminarCliente.Size = new Size(155, 29);
-            btnEliminarCliente.TabIndex = 16;
-            btnEliminarCliente.Text = "Eliminar un cliente";
-            btnEliminarCliente.UseVisualStyleBackColor = true;
-            btnEliminarCliente.Click += btnEliminarCliente_Click;
+            checkBoxActivo.AutoSize = true;
+            checkBoxActivo.Location = new Point(208, 309);
+            checkBoxActivo.Name = "checkBoxActivo";
+            checkBoxActivo.Size = new Size(18, 17);
+            checkBoxActivo.TabIndex = 17;
+            checkBoxActivo.UseVisualStyleBackColor = true;
             // 
-            // FormCliente
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(61, 309);
+            label8.Name = "label8";
+            label8.Size = new Size(51, 20);
+            label8.TabIndex = 18;
+            label8.Text = "Activo";
+            // 
+            // FormNuevoCliente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnEliminarCliente);
+            Controls.Add(label8);
+            Controls.Add(checkBoxActivo);
             Controls.Add(BtnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(label7);
@@ -213,8 +223,8 @@
             Controls.Add(textBoxCuilCuit);
             Controls.Add(textBoxDomicilio);
             Controls.Add(textBoxNombre);
-            Name = "FormCliente";
-            Text = "FormCliente";
+            Name = "FormNuevoCliente";
+            Text = "FormNuevoCliente";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,6 +247,7 @@
         private Label label7;
         private Button btnGuardar;
         private Button BtnCancelar;
-        private Button btnEliminarCliente;
+        private CheckBox checkBoxActivo;
+        private Label label8;
     }
 }
