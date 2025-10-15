@@ -41,6 +41,7 @@
             textBoxMarca = new TextBox();
             textBoxNombre = new TextBox();
             btnGuardar = new Button();
+            btnSalir = new Button();
             SuspendLayout();
             // 
             // checkBoxActivo
@@ -152,11 +153,22 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(624, 182);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 29);
+            btnSalir.TabIndex = 25;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // FormModificarMaquina
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSalir);
             Controls.Add(btnGuardar);
             Controls.Add(checkBoxActivo);
             Controls.Add(label6);
@@ -191,5 +203,6 @@
         private TextBox textBoxMarca;
         private TextBox textBoxNombre;
         private Button btnGuardar;
+        private Button btnSalir;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WinFormsTallerMecanico
 {
-    partial class FormListaMaquinas
+    partial class InformeMaquinasActivas
     {
         /// <summary>
         /// Required designer variable.
@@ -29,35 +29,40 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            dataGridView1 = new DataGridView();
+            dataGridMaquinasActivas = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nombreDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             marcaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             motorDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             patenteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
-            activoDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             maquinaBindingSource = new BindingSource(components);
-            BtnModificarMaquina = new Button();
-            btnEliminarMaquina = new Button();
-            btnNuevaMaquina = new Button();
-            btnActualizar = new Button();
+            label1 = new Label();
             btnSalir = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridMaquinasActivas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)maquinaBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridMaquinasActivas
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { nombreDataGridViewTextBoxColumn, marcaDataGridViewTextBoxColumn, motorDataGridViewTextBoxColumn, patenteDataGridViewTextBoxColumn, Cliente, activoDataGridViewCheckBoxColumn });
-            dataGridView1.DataSource = maquinaBindingSource;
-            dataGridView1.Location = new Point(12, 1);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1195, 418);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridMaquinasActivas.AutoGenerateColumns = false;
+            dataGridMaquinasActivas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridMaquinasActivas.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nombreDataGridViewTextBoxColumn, marcaDataGridViewTextBoxColumn, motorDataGridViewTextBoxColumn, patenteDataGridViewTextBoxColumn, Cliente });
+            dataGridMaquinasActivas.DataSource = maquinaBindingSource;
+            dataGridMaquinasActivas.Location = new Point(12, 46);
+            dataGridMaquinasActivas.Name = "dataGridMaquinasActivas";
+            dataGridMaquinasActivas.RowHeadersWidth = 51;
+            dataGridMaquinasActivas.Size = new Size(1000, 477);
+            dataGridMaquinasActivas.TabIndex = 0;
+            dataGridMaquinasActivas.CellContentClick += dataGridMaquinasActivas_CellContentClick;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.Width = 125;
             // 
             // nombreDataGridViewTextBoxColumn
             // 
@@ -99,100 +104,57 @@
             Cliente.Name = "Cliente";
             Cliente.Width = 125;
             // 
-            // activoDataGridViewCheckBoxColumn
-            // 
-            activoDataGridViewCheckBoxColumn.DataPropertyName = "Activo";
-            activoDataGridViewCheckBoxColumn.HeaderText = "Activo";
-            activoDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            activoDataGridViewCheckBoxColumn.Name = "activoDataGridViewCheckBoxColumn";
-            activoDataGridViewCheckBoxColumn.Width = 125;
-            // 
             // maquinaBindingSource
             // 
             maquinaBindingSource.DataSource = typeof(ClasesTallerMecanico.Models.Maquina);
             // 
-            // BtnModificarMaquina
+            // label1
             // 
-            BtnModificarMaquina.Location = new Point(1294, 211);
-            BtnModificarMaquina.Name = "BtnModificarMaquina";
-            BtnModificarMaquina.Size = new Size(94, 61);
-            BtnModificarMaquina.TabIndex = 8;
-            BtnModificarMaquina.Text = "Modificar maquina";
-            BtnModificarMaquina.UseVisualStyleBackColor = true;
-            BtnModificarMaquina.Click += BtnModificarMaquina_Click;
-            // 
-            // btnEliminarMaquina
-            // 
-            btnEliminarMaquina.Location = new Point(1293, 153);
-            btnEliminarMaquina.Name = "btnEliminarMaquina";
-            btnEliminarMaquina.Size = new Size(94, 49);
-            btnEliminarMaquina.TabIndex = 7;
-            btnEliminarMaquina.Text = "Eliminar Maquina";
-            btnEliminarMaquina.UseVisualStyleBackColor = true;
-            btnEliminarMaquina.Click += btnEliminarMaquina_Click;
-            // 
-            // btnNuevaMaquina
-            // 
-            btnNuevaMaquina.Location = new Point(1292, 83);
-            btnNuevaMaquina.Name = "btnNuevaMaquina";
-            btnNuevaMaquina.Size = new Size(94, 54);
-            btnNuevaMaquina.TabIndex = 6;
-            btnNuevaMaquina.Text = "Nueva Maquina";
-            btnNuevaMaquina.UseVisualStyleBackColor = true;
-            btnNuevaMaquina.Click += btnNuevaMaquina_Click;
-            // 
-            // btnActualizar
-            // 
-            btnActualizar.Location = new Point(1294, 1);
-            btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(93, 61);
-            btnActualizar.TabIndex = 5;
-            btnActualizar.Text = "Actualizar lista";
-            btnActualizar.UseVisualStyleBackColor = true;
-            btnActualizar.Click += btnActualizar_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(366, 5);
+            label1.Name = "label1";
+            label1.Size = new Size(370, 38);
+            label1.TabIndex = 1;
+            label1.Text = "Informe de maquinas activas";
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(1292, 379);
+            btnSalir.Location = new Point(1019, 46);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(94, 61);
-            btnSalir.TabIndex = 9;
+            btnSalir.Size = new Size(94, 29);
+            btnSalir.TabIndex = 2;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
-            // FormListaMaquinas
+            // InformeMaquinasActivas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1398, 450);
+            ClientSize = new Size(1125, 531);
             Controls.Add(btnSalir);
-            Controls.Add(BtnModificarMaquina);
-            Controls.Add(btnEliminarMaquina);
-            Controls.Add(btnNuevaMaquina);
-            Controls.Add(btnActualizar);
-            Controls.Add(dataGridView1);
-            Name = "FormListaMaquinas";
-            Text = "FormListaMaquinas";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Controls.Add(label1);
+            Controls.Add(dataGridMaquinasActivas);
+            Name = "InformeMaquinasActivas";
+            Text = "InformeMaquinasActivas";
+            ((System.ComponentModel.ISupportInitialize)dataGridMaquinasActivas).EndInit();
             ((System.ComponentModel.ISupportInitialize)maquinaBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dataGridMaquinasActivas;
+        private Label label1;
         private BindingSource maquinaBindingSource;
-        private Button BtnModificarMaquina;
-        private Button btnEliminarMaquina;
-        private Button btnNuevaMaquina;
-        private Button btnActualizar;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn marcaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn motorDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn patenteDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn Cliente;
-        private DataGridViewCheckBoxColumn activoDataGridViewCheckBoxColumn;
         private Button btnSalir;
     }
 }

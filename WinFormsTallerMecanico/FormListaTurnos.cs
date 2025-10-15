@@ -163,5 +163,15 @@ namespace WinFormsTallerMecanico
             if (result == DialogResult.OK)
                 CargarDatosTurnos();
         }
+
+        private void btnActualizar_Click_1(object sender, EventArgs e)
+        {
+            CargarDatosTurnos();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

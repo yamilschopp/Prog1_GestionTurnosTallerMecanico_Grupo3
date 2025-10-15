@@ -35,6 +35,7 @@
             labelCP = new Label();
             labelProvincia = new Label();
             btnGuardar = new Button();
+            btnSalir = new Button();
             SuspendLayout();
             // 
             // textBoxNombre
@@ -95,11 +96,22 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(439, 252);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 29);
+            btnSalir.TabIndex = 7;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // FormLocalidad
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSalir);
             Controls.Add(btnGuardar);
             Controls.Add(labelProvincia);
             Controls.Add(labelCP);
@@ -123,5 +135,6 @@
         private Label labelCP;
         private Label labelProvincia;
         private Button btnGuardar;
+        private Button btnSalir;
     }
 }

@@ -43,6 +43,7 @@
             comboBoxMaquina = new ComboBox();
             comboBoxCliente = new ComboBox();
             btnGuardar = new Button();
+            btnSalir = new Button();
             SuspendLayout();
             // 
             // label7
@@ -171,11 +172,22 @@
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(620, 181);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 29);
+            btnSalir.TabIndex = 29;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // FormModificarTurno
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSalir);
             Controls.Add(btnGuardar);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -214,5 +226,6 @@
         private ComboBox comboBoxMaquina;
         private ComboBox comboBoxCliente;
         private Button btnGuardar;
+        private Button btnSalir;
     }
 }

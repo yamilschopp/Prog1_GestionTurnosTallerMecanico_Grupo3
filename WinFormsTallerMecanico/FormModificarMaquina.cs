@@ -81,5 +81,10 @@ namespace WinFormsTallerMecanico
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

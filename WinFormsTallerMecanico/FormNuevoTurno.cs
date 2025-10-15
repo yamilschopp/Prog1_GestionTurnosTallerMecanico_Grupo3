@@ -19,8 +19,9 @@ namespace WinFormsTallerMecanico
             _localidadRepository = new LocalidadRepository(_context);
 
             CargarClientesActivos();
-            CargarMaquinasActivas();
+            //CargarMaquinasActivas();
             CargarLocalidades();
+            comboBoxCliente.SelectedIndexChanged += comboBoxCliente_SelectedIndexChanged;
         }
 
         private void CargarClientesActivos()
@@ -35,17 +36,17 @@ namespace WinFormsTallerMecanico
             }
         }
 
-        private void CargarMaquinasActivas()
-        {
-            var maquinasActivas = _maquinaRepository.ObtenerMaquinasActivas();
-            comboBoxMaquina.DataSource = maquinasActivas;
-            comboBoxMaquina.DisplayMember = "Nombre";
-            comboBoxMaquina.ValueMember = "Id";
-            if (maquinasActivas.Any())
-            {
-                comboBoxCliente.SelectedIndex = 0;
-            }
-        }
+        //private void CargarMaquinasActivas()
+        //{
+        //    var maquinasActivas = _maquinaRepository.ObtenerMaquinasActivas();
+        //    comboBoxMaquina.DataSource = maquinasActivas;
+        //    comboBoxMaquina.DisplayMember = "Nombre";
+        //    comboBoxMaquina.ValueMember = "Id";
+        //    if (maquinasActivas.Any())
+        //    {
+        //        comboBoxCliente.SelectedIndex = 0;
+        //    }
+        //}
 
         private void CargarLocalidades()
         {
@@ -124,6 +125,34 @@ namespace WinFormsTallerMecanico
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        //private void comboBoxMaquina_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (comboBoxCliente.SelectedValue is int idCliente)
+        //    {
+        //        var maquinas = _maquinaRepository.ObtenerMaquinasActivasPorCliente(idCliente);
+        //        comboBoxMaquina.DataSource = maquinas;
+        //        comboBoxMaquina.DisplayMember = "Nombre";
+        //        comboBoxMaquina.ValueMember = "Id";
+        //    }
+        //}
+
+        private void comboBoxCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxCliente.SelectedValue is int idCliente)
+            {
+                var maquinas = _maquinaRepository.ObtenerMaquinasActivasPorCliente(idCliente);
+                comboBoxMaquina.DataSource = maquinas;
+                comboBoxMaquina.DisplayMember = "Nombre";
+                comboBoxMaquina.ValueMember = "Id";
+                if (maquinas.Any())
+                    comboBoxMaquina.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBoxMaquina.DataSource = null;
+            }
         }
     }
 }

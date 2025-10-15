@@ -1,8 +1,6 @@
 ﻿using ClasesTallerMecanico.Data;
 using ClasesTallerMecanico.Models;
 using ClasesTallerMecanico.Repository;
-using System;
-using System.Windows.Forms;
 
 namespace WinFormsTallerMecanico
 {
@@ -31,6 +29,7 @@ namespace WinFormsTallerMecanico
             CargarLocalidades();
             CargarDatosTurnoParaEdicion();
             btnGuardar.Click += btnGuardar_Click;
+            comboBoxCliente.SelectedIndexChanged += comboBoxCliente_SelectedIndexChanged;
         }
 
         private void CargarClientes()
@@ -107,6 +106,27 @@ namespace WinFormsTallerMecanico
                 MessageBox.Show("No se encontró el turno a modificar.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void comboBoxCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxCliente.SelectedValue is int idCliente)
+            {
+                var maquinas = _maquinaRepository.ObtenerMaquinasActivasPorCliente(idCliente);
+                comboBoxMaquina.DataSource = maquinas;
+                comboBoxMaquina.DisplayMember = "Nombre";
+                comboBoxMaquina.ValueMember = "Id";
+                if (maquinas.Any())
+                    comboBoxMaquina.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBoxMaquina.DataSource = null;
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

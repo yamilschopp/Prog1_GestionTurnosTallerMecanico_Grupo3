@@ -151,5 +151,15 @@ namespace WinFormsTallerMecanico
         {
 
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            CargarDatosMaquinas();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

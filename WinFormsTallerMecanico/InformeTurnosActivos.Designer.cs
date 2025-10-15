@@ -1,6 +1,6 @@
 ﻿namespace WinFormsTallerMecanico
 {
-    partial class FormListaTurnos
+    partial class InformeTurnosActivos
     {
         /// <summary>
         /// Required designer variable.
@@ -29,35 +29,50 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            dataGridView1 = new DataGridView();
+            label1 = new Label();
+            dataGridTurnosActivos = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             Cliente = new DataGridViewTextBoxColumn();
             Maquina = new DataGridViewTextBoxColumn();
             fechaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             domicilioTrabajoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             Localidad = new DataGridViewTextBoxColumn();
             descripcionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Activo = new DataGridViewCheckBoxColumn();
             turnoBindingSource = new BindingSource(components);
-            BtnModificarTurno = new Button();
-            btnEliminarTurno = new Button();
-            btnNuevoTurno = new Button();
-            btnActualizar = new Button();
             btnSalir = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridTurnosActivos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)turnoBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // label1
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Cliente, Maquina, fechaDataGridViewTextBoxColumn, domicilioTrabajoDataGridViewTextBoxColumn, Localidad, descripcionDataGridViewTextBoxColumn, Activo });
-            dataGridView1.DataSource = turnoBindingSource;
-            dataGridView1.Location = new Point(5, 6);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(987, 393);
-            dataGridView1.TabIndex = 0;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(319, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(332, 38);
+            label1.TabIndex = 2;
+            label1.Text = "Informe de turnos activos";
+            // 
+            // dataGridTurnosActivos
+            // 
+            dataGridTurnosActivos.AutoGenerateColumns = false;
+            dataGridTurnosActivos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridTurnosActivos.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, Cliente, Maquina, fechaDataGridViewTextBoxColumn, domicilioTrabajoDataGridViewTextBoxColumn, Localidad, descripcionDataGridViewTextBoxColumn });
+            dataGridTurnosActivos.DataSource = turnoBindingSource;
+            dataGridTurnosActivos.Location = new Point(2, 47);
+            dataGridTurnosActivos.Name = "dataGridTurnosActivos";
+            dataGridTurnosActivos.RowHeadersWidth = 51;
+            dataGridTurnosActivos.Size = new Size(1003, 483);
+            dataGridTurnosActivos.TabIndex = 3;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.Width = 125;
             // 
             // Cliente
             // 
@@ -107,102 +122,48 @@
             descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
             descripcionDataGridViewTextBoxColumn.Width = 125;
             // 
-            // Activo
-            // 
-            Activo.DataPropertyName = "Activo";
-            Activo.HeaderText = "Activo";
-            Activo.MinimumWidth = 6;
-            Activo.Name = "Activo";
-            Activo.Width = 125;
-            // 
             // turnoBindingSource
             // 
             turnoBindingSource.DataSource = typeof(ClasesTallerMecanico.Models.Turno);
             // 
-            // BtnModificarTurno
-            // 
-            BtnModificarTurno.Location = new Point(1000, 222);
-            BtnModificarTurno.Name = "BtnModificarTurno";
-            BtnModificarTurno.Size = new Size(94, 61);
-            BtnModificarTurno.TabIndex = 8;
-            BtnModificarTurno.Text = "Modificar turno";
-            BtnModificarTurno.UseVisualStyleBackColor = true;
-            BtnModificarTurno.Click += BtnModificarTurno_Click;
-            // 
-            // btnEliminarTurno
-            // 
-            btnEliminarTurno.Location = new Point(999, 164);
-            btnEliminarTurno.Name = "btnEliminarTurno";
-            btnEliminarTurno.Size = new Size(94, 49);
-            btnEliminarTurno.TabIndex = 7;
-            btnEliminarTurno.Text = "Eliminar turno";
-            btnEliminarTurno.UseVisualStyleBackColor = true;
-            btnEliminarTurno.Click += btnEliminarTurno_Click;
-            // 
-            // btnNuevoTurno
-            // 
-            btnNuevoTurno.Location = new Point(998, 94);
-            btnNuevoTurno.Name = "btnNuevoTurno";
-            btnNuevoTurno.Size = new Size(94, 54);
-            btnNuevoTurno.TabIndex = 6;
-            btnNuevoTurno.Text = "Nuevo Turno";
-            btnNuevoTurno.UseVisualStyleBackColor = true;
-            btnNuevoTurno.Click += btnNuevoTurno_Click;
-            // 
-            // btnActualizar
-            // 
-            btnActualizar.Location = new Point(1000, 12);
-            btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(93, 61);
-            btnActualizar.TabIndex = 5;
-            btnActualizar.Text = "Actualizar lista";
-            btnActualizar.UseVisualStyleBackColor = true;
-            btnActualizar.Click += btnActualizar_Click_1;
-            // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(1000, 377);
+            btnSalir.Location = new Point(1011, 56);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(94, 61);
-            btnSalir.TabIndex = 9;
+            btnSalir.Size = new Size(94, 29);
+            btnSalir.TabIndex = 4;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
             // 
-            // FormListaTurnos
+            // InformeTurnosActivos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1104, 450);
+            ClientSize = new Size(1109, 532);
             Controls.Add(btnSalir);
-            Controls.Add(BtnModificarTurno);
-            Controls.Add(btnEliminarTurno);
-            Controls.Add(btnNuevoTurno);
-            Controls.Add(btnActualizar);
-            Controls.Add(dataGridView1);
-            Name = "FormListaTurnos";
-            Text = "FormListaTurnos";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Controls.Add(dataGridTurnosActivos);
+            Controls.Add(label1);
+            Name = "InformeTurnosActivos";
+            Text = "InformeTurnosActivos";
+            ((System.ComponentModel.ISupportInitialize)dataGridTurnosActivos).EndInit();
             ((System.ComponentModel.ISupportInitialize)turnoBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
-        private BindingSource turnoBindingSource;
-        private Button BtnModificarTurno;
-        private Button btnEliminarTurno;
-        private Button btnNuevoTurno;
-        private Button btnActualizar;
+        private Label label1;
+        private DataGridView dataGridTurnosActivos;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn Cliente;
         private DataGridViewTextBoxColumn Maquina;
         private DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn domicilioTrabajoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn Localidad;
-        private DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
-        private DataGridViewCheckBoxColumn Activo;
+        private BindingSource turnoBindingSource;
         private Button btnSalir;
     }
 }

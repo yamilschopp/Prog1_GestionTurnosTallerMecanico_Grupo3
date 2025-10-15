@@ -45,6 +45,7 @@
             textBoxDomicilio = new TextBox();
             textBoxNombre = new TextBox();
             btnGuardar = new Button();
+            btnSalir = new Button();
             SuspendLayout();
             // 
             // label8
@@ -188,11 +189,22 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(614, 148);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 29);
+            btnSalir.TabIndex = 36;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // FormModificarCliente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSalir);
             Controls.Add(btnGuardar);
             Controls.Add(label8);
             Controls.Add(checkBoxActivo);
@@ -235,5 +247,6 @@
         private TextBox textBoxDomicilio;
         private TextBox textBoxNombre;
         private Button btnGuardar;
+        private Button btnSalir;
     }
 }

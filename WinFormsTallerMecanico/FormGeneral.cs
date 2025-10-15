@@ -48,5 +48,24 @@ namespace WinFormsTallerMecanico
 
             formListaTurnos.ShowDialog();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            InformeMaquinasActivas informeMaquinasActivas = new InformeMaquinasActivas();
+
+            informeMaquinasActivas.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InformeTurnosActivos informeTurnosActivos = new InformeTurnosActivos();
+
+            informeTurnosActivos.ShowDialog();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

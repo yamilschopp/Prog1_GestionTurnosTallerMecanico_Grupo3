@@ -36,6 +36,14 @@ namespace ClasesTallerMecanico.Repository
                            .Where(m => m.Activo == true)
                            .ToList(); // Ejecuta la consulta y devuelve una lista
         }
+
+        public List<Maquina> ObtenerMaquinasActivasPorCliente(int idCliente)
+        {
+            return _context.Maquinas
+                .Include(m => m.Cliente)
+                .Where(m => m.Activo && m.IdCliente == idCliente)
+                .ToList();
+        }
         public Maquina ObtenerMaquinaPorPatente(string patente)
         {
             return _context.Maquinas

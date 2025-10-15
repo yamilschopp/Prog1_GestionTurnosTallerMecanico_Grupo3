@@ -44,6 +44,7 @@
             btnNuevoCliente = new Button();
             btnEliminarCliente = new Button();
             BtnModificarCliente = new Button();
+            btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)usuarioBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)clienteBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usuarioBindingSource1).BeginInit();
@@ -171,11 +172,22 @@
             BtnModificarCliente.UseVisualStyleBackColor = true;
             BtnModificarCliente.Click += BtnModificarCliente_Click;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(949, 409);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(94, 29);
+            btnSalir.TabIndex = 5;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // FormListaClientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1048, 450);
+            Controls.Add(btnSalir);
             Controls.Add(BtnModificarCliente);
             Controls.Add(btnEliminarCliente);
             Controls.Add(btnNuevoCliente);
@@ -206,5 +218,6 @@
         private Button btnNuevoCliente;
         private Button btnEliminarCliente;
         private Button BtnModificarCliente;
+        private Button btnSalir;
     }
 }
