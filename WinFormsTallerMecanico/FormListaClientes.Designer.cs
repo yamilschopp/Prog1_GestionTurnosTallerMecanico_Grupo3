@@ -134,6 +134,7 @@
             // 
             // btnActualizar
             // 
+            btnActualizar.Enabled = false;
             btnActualizar.Location = new Point(949, 12);
             btnActualizar.Name = "btnActualizar";
             btnActualizar.Size = new Size(93, 61);

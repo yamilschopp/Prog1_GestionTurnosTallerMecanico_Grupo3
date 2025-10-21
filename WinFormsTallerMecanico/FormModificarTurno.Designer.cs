@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label7 = new Label();
-            label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -44,6 +43,7 @@
             comboBoxCliente = new ComboBox();
             btnGuardar = new Button();
             btnSalir = new Button();
+            label6 = new Label();
             SuspendLayout();
             // 
             // label7
@@ -63,6 +63,7 @@
             label6.Size = new Size(51, 20);
             label6.TabIndex = 26;
             label6.Text = "Activo";
+            label6.Visible = false;
             // 
             // label5
             // 
@@ -124,6 +125,7 @@
             checkBoxActivo.Size = new Size(18, 17);
             checkBoxActivo.TabIndex = 19;
             checkBoxActivo.UseVisualStyleBackColor = true;
+            checkBoxActivo.Visible = false;
             // 
             // comboBoxLocalidad
             // 

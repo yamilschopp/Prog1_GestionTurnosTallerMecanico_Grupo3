@@ -74,7 +74,7 @@ namespace WinFormsTallerMecanico
 
                 MessageBox.Show("Cliente modificado con éxito.", "Modificación Exitosa",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
+                this.DialogResult = DialogResult.OK; // Asegura que el formulario cierre con OK
                 this.Close();
             }
             else

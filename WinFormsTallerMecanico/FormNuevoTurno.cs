@@ -13,13 +13,14 @@ namespace WinFormsTallerMecanico
         {
             InitializeComponent();
             checkBoxActivo.Checked = true;
+            checkBoxActivo.Visible = false;
+            label6.Visible = false;
             _context = new ApplicationDbContext();
             _clienteRepository = new ClienteRepository(_context);
             _maquinaRepository = new MaquinaRepository(_context);
             _localidadRepository = new LocalidadRepository(_context);
 
             CargarClientesActivos();
-            //CargarMaquinasActivas();
             CargarLocalidades();
             comboBoxCliente.SelectedIndexChanged += comboBoxCliente_SelectedIndexChanged;
         }
@@ -94,7 +95,7 @@ namespace WinFormsTallerMecanico
                 Fecha = dateTimePickerTurno.Value,
                 DomicilioTrabajo = textBoxDomicilio.Text.Trim(),
                 IdLocalidad = (int)comboBoxLocalidad.SelectedValue,
-                Activo = checkBoxActivo.Checked,
+                Activo = true, // Siempre activo al crear
                 Descripcion = textBoxDescripcion.Text.Trim()
             };
 
@@ -102,18 +103,10 @@ namespace WinFormsTallerMecanico
             {
                 var turnoRepository = new ClasesTallerMecanico.Repository.TurnoRepository(_context);
                 turnoRepository.GuardarTurno(nuevoTurno);
-
                 MessageBox.Show("Turno guardado con éxito.", "Guardado Exitoso",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Limpiar campos
-                comboBoxCliente.SelectedIndex = 0;
-                comboBoxMaquina.SelectedIndex = 0;
-                dateTimePickerTurno.Value = DateTime.Now;
-                textBoxDomicilio.Clear();
-                comboBoxLocalidad.SelectedIndex = 0;
-                checkBoxActivo.Checked = true;
-                textBoxDescripcion.Clear();
+                this.DialogResult = DialogResult.OK; // Para actualizar la lista automáticamente
+                this.Close();
             }
             catch (Exception ex)
             {

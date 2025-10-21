@@ -190,6 +190,7 @@
             checkBoxActivo.Size = new Size(18, 17);
             checkBoxActivo.TabIndex = 17;
             checkBoxActivo.UseVisualStyleBackColor = true;
+            checkBoxActivo.Visible = false;
             // 
             // label8
             // 
@@ -199,6 +200,7 @@
             label8.Size = new Size(51, 20);
             label8.TabIndex = 18;
             label8.Text = "Activo";
+            label8.Visible = false;
             // 
             // FormNuevoCliente
             // 

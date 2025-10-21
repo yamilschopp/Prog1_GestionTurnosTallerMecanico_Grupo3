@@ -34,7 +34,6 @@
             textBoxDomicilio = new TextBox();
             comboBoxLocalidad = new ComboBox();
             checkBoxActivo = new CheckBox();
-            textBoxDescripcion = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -44,6 +43,7 @@
             label7 = new Label();
             btnGuardar = new Button();
             btnCancelar = new Button();
+            textBoxDescripcion = new TextBox();
             SuspendLayout();
             // 
             // comboBoxCliente
@@ -92,13 +92,7 @@
             checkBoxActivo.Size = new Size(18, 17);
             checkBoxActivo.TabIndex = 5;
             checkBoxActivo.UseVisualStyleBackColor = true;
-            // 
-            // textBoxDescripcion
-            // 
-            textBoxDescripcion.Location = new Point(137, 280);
-            textBoxDescripcion.Name = "textBoxDescripcion";
-            textBoxDescripcion.Size = new Size(298, 27);
-            textBoxDescripcion.TabIndex = 6;
+            checkBoxActivo.Visible = false;
             // 
             // label1
             // 
@@ -154,6 +148,7 @@
             label6.Size = new Size(51, 20);
             label6.TabIndex = 12;
             label6.Text = "Activo";
+            label6.Visible = false;
             // 
             // label7
             // 
@@ -184,11 +179,19 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // textBoxDescripcion
+            // 
+            textBoxDescripcion.Location = new Point(137, 280);
+            textBoxDescripcion.Name = "textBoxDescripcion";
+            textBoxDescripcion.Size = new Size(298, 27);
+            textBoxDescripcion.TabIndex = 6;
+            // 
             // FormNuevoTurno
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBoxDescripcion);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(label7);
@@ -198,7 +201,6 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(textBoxDescripcion);
             Controls.Add(checkBoxActivo);
             Controls.Add(comboBoxLocalidad);
             Controls.Add(textBoxDomicilio);
@@ -219,7 +221,6 @@
         private TextBox textBoxDomicilio;
         private ComboBox comboBoxLocalidad;
         private CheckBox checkBoxActivo;
-        private TextBox textBoxDescripcion;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -229,5 +230,6 @@
         private Label label7;
         private Button btnGuardar;
         private Button btnCancelar;
+        private TextBox textBoxDescripcion;
     }
 }

@@ -40,7 +40,6 @@ namespace WinFormsTallerMecanico
                 textBoxMarca.Text = _maquina.Marca;
                 textBoxMotor.Text = _maquina.Motor;
                 textBoxPatente.Text = _maquina.Patente;
-                checkBoxActivo.Checked = _maquina.Activo;
                 comboBoxCliente.SelectedValue = _maquina.IdCliente;
             }
         }
@@ -57,7 +56,6 @@ namespace WinFormsTallerMecanico
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             var maquina = _maquinaRepository.ObtenerMaquinaPorPatente(_maquina.Patente);
             if (maquina != null)
             {
@@ -66,10 +64,7 @@ namespace WinFormsTallerMecanico
                 maquina.Motor = textBoxMotor.Text.Trim();
                 maquina.Patente = textBoxPatente.Text.Trim();
                 maquina.IdCliente = (int)comboBoxCliente.SelectedValue;
-                maquina.Activo = checkBoxActivo.Checked;
-
                 _context.SaveChanges();
-
                 MessageBox.Show("Máquina modificada con éxito.", "Modificación Exitosa",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;

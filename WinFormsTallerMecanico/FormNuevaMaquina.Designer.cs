@@ -38,8 +38,8 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            label6 = new Label();
             checkBoxActivo = new CheckBox();
+            label6 = new Label();
             btnGuardar = new Button();
             btnCancelar = new Button();
             SuspendLayout();
@@ -125,15 +125,6 @@
             label5.TabIndex = 9;
             label5.Text = "Cliente";
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(29, 273);
-            label6.Name = "label6";
-            label6.Size = new Size(51, 20);
-            label6.TabIndex = 10;
-            label6.Text = "Activo";
-            // 
             // checkBoxActivo
             // 
             checkBoxActivo.AutoSize = true;
@@ -142,6 +133,17 @@
             checkBoxActivo.Size = new Size(18, 17);
             checkBoxActivo.TabIndex = 11;
             checkBoxActivo.UseVisualStyleBackColor = true;
+            checkBoxActivo.Visible = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(29, 273);
+            label6.Name = "label6";
+            label6.Size = new Size(51, 20);
+            label6.TabIndex = 10;
+            label6.Text = "Activo";
+            label6.Visible = false;
             // 
             // btnGuardar
             // 
@@ -200,9 +202,9 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private Label label6;
         private CheckBox checkBoxActivo;
         private Button btnGuardar;
         private Button btnCancelar;
+        private Label label6;
     }
 }

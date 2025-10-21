@@ -22,12 +22,17 @@ namespace WinFormsTallerMecanico
         }
         private void CargarDatosMaquinas()
         {
-            var maquinas = _maquinaRepository.ObtenerTodasLasMaquinas();
-            dataGridView1.DataSource = maquinas.ToList();
+            // Siempre crear un nuevo contexto y repositorio para evitar caché
+            using (var context = new ApplicationDbContext())
+            {
+                var maquinaRepository = new MaquinaRepository(context);
+                var maquinas = maquinaRepository.ObtenerTodasLasMaquinas();
+                dataGridView1.DataSource = maquinas.ToList();
+                dataGridView1.Refresh(); // Forzar refresco visual
 
-            if (dataGridView1.Columns["IdCliente"] != null)
-                dataGridView1.Columns["IdCliente"].Visible = false;
-
+                if (dataGridView1.Columns["IdCliente"] != null)
+                    dataGridView1.Columns["IdCliente"].Visible = false;
+            }
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -46,52 +51,48 @@ namespace WinFormsTallerMecanico
         private void btnNuevaMaquina_Click(object sender, EventArgs e)
         {
             FormNuevaMaquina formNuevaMaquina = new FormNuevaMaquina();
-            formNuevaMaquina.ShowDialog();
+            if (formNuevaMaquina.ShowDialog() == DialogResult.OK)
+            {
+                CargarDatosMaquinas(); // Actualiza la grilla automáticamente
+            }
         }
 
         private void btnEliminarMaquina_Click(object sender, EventArgs e)
         {
-            string patente = Interaction.InputBox(
-                "Ingrese la PATENTE de la máquina que desea eliminar:",
-                "Eliminar Máquina",
-                ""
-            );
-
-            if (string.IsNullOrWhiteSpace(patente))
+            if (dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.DataBoundItem == null)
             {
-                MessageBox.Show("Operación cancelada o patente no proporcionada.", "Advertencia",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe seleccionar una máquina de la lista.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            string patenteTrimmed = patente.Trim();
-
+            var maquinaSeleccionada = dataGridView1.CurrentRow.DataBoundItem as Maquina;
+            if (maquinaSeleccionada == null)
+            {
+                MessageBox.Show("No se pudo obtener la máquina seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             DialogResult confirmacion = MessageBox.Show(
-                $"¿Está seguro que desea eliminar la máquina con PATENTE: {patenteTrimmed}?",
+                $"¿Está seguro que desea eliminar la máquina con PATENTE: {maquinaSeleccionada.Patente}?",
                 "Confirmar Eliminación",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             );
-
             if (confirmacion == DialogResult.No)
             {
                 return;
             }
-
             try
             {
-                bool eliminada = _maquinaRepository.EliminarMaquinaPorPatente(patenteTrimmed);
-
+                bool eliminada = _maquinaRepository.EliminarMaquinaPorPatente(maquinaSeleccionada.Patente);
                 if (eliminada)
                 {
-                    MessageBox.Show($"Máquina con PATENTE {patenteTrimmed} eliminada con éxito.",
+                    MessageBox.Show($"Máquina con PATENTE {maquinaSeleccionada.Patente} eliminada con éxito.",
                                     "Eliminación Exitosa",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarDatosMaquinas();
                 }
                 else
                 {
-                    MessageBox.Show($"No se encontró ninguna máquina con la patente: {patenteTrimmed}.",
+                    MessageBox.Show($"No se encontró ninguna máquina con la patente: {maquinaSeleccionada.Patente}.",
                                     "Máquina No Encontrada",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -106,35 +107,21 @@ namespace WinFormsTallerMecanico
 
         private void BtnModificarMaquina_Click(object sender, EventArgs e)
         {
-            string patente = Interaction.InputBox(
-                "Ingrese la PATENTE de la máquina que desea MODIFICAR:",
-                "Modificar Máquina",
-                ""
-            );
-
-            if (string.IsNullOrWhiteSpace(patente))
+            if (dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.DataBoundItem == null)
             {
-                MessageBox.Show("Operación cancelada o patente no proporcionada.", "Advertencia",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe seleccionar una máquina de la lista.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            string patenteTrimmed = patente.Trim();
-
+            var maquinaSeleccionada = dataGridView1.CurrentRow.DataBoundItem as Maquina;
+            if (maquinaSeleccionada == null)
+            {
+                MessageBox.Show("No se pudo obtener la máquina seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
-                Maquina maquinaExistente = _maquinaRepository.ObtenerMaquinaPorPatente(patenteTrimmed);
-                if (maquinaExistente == null)
-                {
-                    MessageBox.Show($"No se encontró ninguna máquina con la patente: {patenteTrimmed}.",
-                                    "Máquina No Encontrada",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                FormModificarMaquina formModificarMaquina = new FormModificarMaquina(maquinaExistente);
+                FormModificarMaquina formModificarMaquina = new FormModificarMaquina(maquinaSeleccionada);
                 DialogResult result = formModificarMaquina.ShowDialog();
-
                 if (result == DialogResult.OK)
                 {
                     CargarDatosMaquinas();

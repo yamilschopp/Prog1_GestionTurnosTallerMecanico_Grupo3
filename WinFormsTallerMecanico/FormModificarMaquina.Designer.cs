@@ -52,6 +52,7 @@
             checkBoxActivo.Size = new Size(18, 17);
             checkBoxActivo.TabIndex = 23;
             checkBoxActivo.UseVisualStyleBackColor = true;
+            checkBoxActivo.Visible = false;
             // 
             // label6
             // 
@@ -61,6 +62,7 @@
             label6.Size = new Size(51, 20);
             label6.TabIndex = 22;
             label6.Text = "Activo";
+            label6.Visible = false;
             // 
             // label5
             // 

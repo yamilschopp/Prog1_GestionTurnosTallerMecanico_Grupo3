@@ -65,7 +65,7 @@ namespace WinFormsTallerMecanico
                 dateTimePickerTurno.Value = _turno.Fecha;
                 textBoxDomicilio.Text = _turno.DomicilioTrabajo;
                 comboBoxLocalidad.SelectedValue = _turno.IdLocalidad;
-                checkBoxActivo.Checked = _turno.Activo;
+                // checkBoxActivo.Checked = _turno.Activo; // Oculto, no editable
                 textBoxDescripcion.Text = _turno.Descripcion;
             }
         }
@@ -82,7 +82,6 @@ namespace WinFormsTallerMecanico
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             var turno = _turnoRepository.ObtenerTurnoPorId(_idTurno);
             if (turno != null)
             {
@@ -91,11 +90,9 @@ namespace WinFormsTallerMecanico
                 turno.Fecha = dateTimePickerTurno.Value;
                 turno.DomicilioTrabajo = textBoxDomicilio.Text.Trim();
                 turno.IdLocalidad = (int)comboBoxLocalidad.SelectedValue;
-                turno.Activo = checkBoxActivo.Checked;
+                // turno.Activo = checkBoxActivo.Checked; // Oculto, no editable
                 turno.Descripcion = textBoxDescripcion.Text.Trim();
-
                 _context.SaveChanges();
-
                 MessageBox.Show("Turno modificado con éxito.", "Modificación Exitosa",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;

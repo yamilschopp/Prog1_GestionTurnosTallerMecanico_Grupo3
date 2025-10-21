@@ -14,6 +14,8 @@ namespace WinFormsTallerMecanico
         {
             InitializeComponent();
             checkBoxActivo.Checked = true;
+            checkBoxActivo.Visible = false;
+            label6.Visible = false;
             _context = new ApplicationDbContext();
             _maquinaRepository = new MaquinaRepository(_context);
             _clienteRepository = new ClienteRepository(_context);
@@ -45,9 +47,6 @@ namespace WinFormsTallerMecanico
                 return;
             }
 
-            var _context = new ClasesTallerMecanico.Data.ApplicationDbContext();
-            var _maquinaRepository = new ClasesTallerMecanico.Repository.MaquinaRepository(_context);
-
             var nuevaMaquina = new ClasesTallerMecanico.Models.Maquina
             {
                 Nombre = textBoxNombre.Text.Trim(),
@@ -55,23 +54,16 @@ namespace WinFormsTallerMecanico
                 Motor = textBoxMotor.Text.Trim(),
                 Patente = textBoxPatente.Text.Trim(),
                 IdCliente = (int)comboBoxCliente.SelectedValue,
-                Activo = checkBoxActivo.Checked
+                Activo = true // Siempre activo al crear
             };
 
             try
             {
                 _maquinaRepository.GuardarMaquina(nuevaMaquina);
-
                 MessageBox.Show("Máquina guardada con éxito.", "Guardado Exitoso",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                textBoxNombre.Clear();
-                textBoxMarca.Clear();
-                textBoxMotor.Clear();
-                textBoxPatente.Clear();
-                if (comboBoxCliente.Items.Count > 0) comboBoxCliente.SelectedIndex = 0;
-                checkBoxActivo.Checked = false;
-                textBoxNombre.Focus();
+                this.DialogResult = DialogResult.OK; // Para actualizar la lista automáticamente
+                this.Close();
             }
             catch (Exception ex)
             {

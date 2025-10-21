@@ -13,6 +13,8 @@ namespace WinFormsTallerMecanico
         {
             InitializeComponent();
             checkBoxActivo.Checked = true;
+            checkBoxActivo.Visible = false;
+            label8.Visible = false;
             _context = new ApplicationDbContext();
             _clienteRepository = new ClienteRepository(_context);
             _localidadRepository = new LocalidadRepository(_context);
@@ -75,7 +77,7 @@ namespace WinFormsTallerMecanico
                 Telefono = textBoxTelefono.Text.Trim(),
                 Correo = textBoxCorreo.Text.Trim(),
                 IdLocalidad = (int)comboBoxLocalidad.SelectedValue,
-                Activo = checkBoxActivo.Checked,
+                Activo = true, // Siempre activo al crear
                 CuilCuit = cuilCuitLimpio,
                 CondFiscal = textBoxCondFiscal.Text.Trim()
             };
@@ -83,18 +85,10 @@ namespace WinFormsTallerMecanico
             try
             {
                 _clienteRepository.GuardarCliente(nuevoCliente);
-
                 MessageBox.Show("Cliente guardado con éxito.", "Guardado Exitoso",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                textBoxNombre.Clear();
-                textBoxDomicilio.Clear();
-                textBoxCuilCuit.Clear();
-                textBoxCondFiscal.Clear();
-                textBoxTelefono.Clear();
-                textBoxCorreo.Clear();
-                if (comboBoxLocalidad.Items.Count > 0) comboBoxLocalidad.SelectedIndex = 0;
-                textBoxNombre.Focus();
+                this.DialogResult = DialogResult.OK; // Para actualizar la lista automáticamente
+                this.Close();
             }
             catch (Exception ex)
             {
