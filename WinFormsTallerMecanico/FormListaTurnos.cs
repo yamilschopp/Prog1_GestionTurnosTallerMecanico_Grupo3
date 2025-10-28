@@ -10,12 +10,14 @@ namespace WinFormsTallerMecanico
         private ApplicationDbContext _context;
         private TurnoRepository _turnoRepository;
         private LocalidadRepository _localidadRepository;
+        private MaquinaRepository _maquinaRepository;
         public FormListaTurnos()
         {
             InitializeComponent();
             _context = new ApplicationDbContext();
             _turnoRepository = new TurnoRepository(_context);
             _localidadRepository = new LocalidadRepository(_context);
+            _maquinaRepository = new MaquinaRepository(_context); // Inicializar repositorio de máquinas
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             CargarDatosTurnos();
         }
@@ -70,6 +72,12 @@ namespace WinFormsTallerMecanico
 
         private void btnNuevoTurno_Click(object sender, EventArgs e)
         {
+            var maquinas = _maquinaRepository.ObtenerTodasLasMaquinas();
+            if (maquinas == null || maquinas.Count == 0)
+            {
+                MessageBox.Show("Debe cargar al menos una máquina antes de poder dar de alta un turno.", "Máquina requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var localidades = _localidadRepository.ObtenerTodas();
             if (localidades == null || localidades.Count == 0)
             {

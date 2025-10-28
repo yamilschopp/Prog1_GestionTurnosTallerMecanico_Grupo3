@@ -10,13 +10,13 @@ namespace WinFormsTallerMecanico
     {
         private ApplicationDbContext _context;
         private MaquinaRepository _maquinaRepository;
+        private ClienteRepository _clienteRepository;
         public FormListaMaquinas()
         {
             InitializeComponent();
-
             _context = new ApplicationDbContext();
             _maquinaRepository = new MaquinaRepository(_context);
-
+            _clienteRepository = new ClienteRepository(_context); // Inicializar repositorio de clientes
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             CargarDatosMaquinas();
         }
@@ -50,6 +50,12 @@ namespace WinFormsTallerMecanico
 
         private void btnNuevaMaquina_Click(object sender, EventArgs e)
         {
+            var clientes = _clienteRepository.ObtenerTodosLosClientes();
+            if (clientes == null || clientes.Count == 0)
+            {
+                MessageBox.Show("Debe cargar al menos un cliente antes de poder dar de alta una máquina.", "Cliente requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             FormNuevaMaquina formNuevaMaquina = new FormNuevaMaquina();
             if (formNuevaMaquina.ShowDialog() == DialogResult.OK)
             {
